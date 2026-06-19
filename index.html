@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>팀 스터디 가이드 — 주간회의로 AI 인사이트 나누기</title>
+<style>
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+  :root{--bg:#F7F8FA;--card:#fff;--line:#E5E7EB;--ink:#0F172A;--sub:#64748B;--emerald:#00C781;--emerald-d:#059e6a;--soft:#ECFDF5;--amber:#F59E0B}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Pretendard",-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:30px 20px 90px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;color:var(--emerald-d);background:var(--soft);border-radius:999px;padding:5px 13px;margin-bottom:14px}
+  h1{font-size:27px;margin:0 0 8px;letter-spacing:-.02em;line-height:1.3}
+  .oneline{font-size:16px;font-weight:700;color:var(--ink);background:linear-gradient(transparent 58%, #BBF7D0 58%);display:inline;line-height:1.9}
+  .sub{color:var(--sub);font-size:14px;margin:14px 0 0}
+  .notice{background:var(--soft);border:1px solid #BBF7D0;border-left:4px solid var(--emerald);border-radius:12px;padding:14px 16px;margin-top:18px}
+  .notice .ni{font-size:14px;font-weight:800;color:var(--emerald-d);margin-bottom:5px}
+  .notice .nb{font-size:13.5px;color:#334155}
+  .notice b{color:var(--ink)}
+  .bottomnote{background:#F8FAFC;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:42px;font-size:14px;color:#334155;text-align:center}
+  .bottomnote b{color:var(--ink)}
+  .bottomnote a{color:var(--emerald-d);font-weight:700;text-decoration:none;white-space:nowrap}
+  .cta{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 8px}
+  .cta a{text-decoration:none;font-size:13.5px;font-weight:700;border-radius:10px;padding:11px 16px}
+  .cta .primary{background:var(--ink);color:#fff}
+  .cta .ghost{background:#fff;border:1px solid var(--line);color:#334155}
+  section{margin-top:34px}
+  h2{font-size:18px;margin:0 0 14px;display:flex;align-items:center;gap:8px}
+  h2 .n{width:25px;height:25px;border-radius:7px;background:var(--ink);color:#fff;font-size:13px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .why{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .why ul{margin:0;padding-left:18px}.why li{margin:8px 0;font-size:14px;color:#334155}
+  .why b{color:var(--ink)}
+  /* 루틴 카드 */
+  .routine{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:680px){.routine{grid-template-columns:1fr}}
+  .rcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;position:relative;overflow:hidden}
+  .rcard::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--emerald)}
+  .rcard .num{font-size:13px;font-weight:800;color:var(--emerald-d)}
+  .rcard .min{float:right;font-size:11px;font-weight:700;color:#fff;background:var(--emerald);border-radius:999px;padding:2px 9px}
+  .rcard h3{font-size:15px;margin:8px 0 6px}
+  .rcard p{font-size:13px;color:var(--sub);margin:0}
+  .tip-inline{font-size:12px;color:var(--emerald-d);margin-top:10px;font-weight:600}
+  .keynote{text-align:center;font-size:14px;color:var(--sub);margin-top:14px}
+  .keynote b{color:var(--ink)}
+  /* 대본 */
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px 16px;margin-bottom:10px}
+  details summary{cursor:pointer;font-weight:700;font-size:14px;padding:12px 0;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▸ ";color:var(--emerald-d)}
+  details[open] summary::before{content:"▾ "}
+  .script{font-size:13.5px;color:#334155;padding:4px 0 14px}
+  .script .q{background:var(--soft);border-left:3px solid var(--emerald);border-radius:0 8px 8px 0;padding:9px 13px;margin:8px 0;font-style:normal}
+  .script .lbl{font-size:12px;font-weight:800;color:var(--sub);margin-top:10px}
+  /* 4주 */
+  .weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  @media(max-width:680px){.weeks{grid-template-columns:1fr 1fr}}
+  .wk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .wk .t{font-size:12px;font-weight:800;color:var(--emerald-d)}
+  .wk h4{font-size:13.5px;margin:6px 0 4px}
+  .wk p{font-size:12px;color:var(--sub);margin:0}
+  /* 팁 */
+  .tips{display:flex;flex-direction:column;gap:8px}
+  .tip{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 15px;font-size:13.5px;color:#334155}
+  .tip b{color:var(--ink)}
+  .exlist{display:flex;flex-direction:column;gap:8px}
+  .ex{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 15px;font-size:13.5px;color:#334155;display:flex;gap:10px;align-items:flex-start}
+  .ex .tag{flex-shrink:0;font-size:12px;font-weight:700;color:var(--emerald-d);background:var(--soft);border-radius:7px;padding:3px 9px;white-space:nowrap}
+  @media(max-width:560px){.ex{flex-direction:column;gap:5px}}
+  /* 주제 탭 */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+  .tab{cursor:pointer;font-size:13px;font-weight:700;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 15px;transition:.15s}
+  .tab:hover{border-color:var(--emerald);color:var(--emerald-d)}
+  .tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .exgroup{display:none}.exgroup.on{display:block}
+  /* 체크리스트 */
+  .check{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 18px}
+  .check label{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-bottom:1px solid #F1F5F9;font-size:14px;cursor:pointer}
+  .check label:last-child{border-bottom:none}
+  .check input{width:19px;height:19px;margin-top:1px;accent-color:var(--emerald);flex-shrink:0}
+  .check input:checked + span{color:var(--sub);text-decoration:line-through}
+  .mats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:680px){.mats{grid-template-columns:1fr}}
+  .mat{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 15px;font-size:13.5px;text-decoration:none;color:var(--ink);display:flex;gap:9px;align-items:center}
+  .mat:hover{border-color:var(--emerald)}
+  .mat .d{font-size:12px;color:var(--sub)}
+  .foot{font-size:11.5px;color:#94a3b8;margin-top:36px;text-align:center;border-top:1px solid var(--line);padding-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="badge">🧑‍🏫 팀 리더용 · 주간회의 루틴</span>
+  <h1>주간회의로 우리 팀 'AI 인사이트' 나누기</h1>
+  <p style="margin:6px 0 0"><span class="oneline">각자 이번 주 AI로 간단히 해본 것 하나, 가볍게 공유하는 자리.</span></p>
+  <p class="sub">새 회의를 만들 필요 없어요. 이미 있는 <b>주간회의에 15~20분</b>만 얹으면 됩니다.</p>
+
+  <div class="notice">
+    <div class="ni">📅 6월 5주차 시작 · 매주 1회</div>
+    <div class="nb"><b>시작 전, 팀에 미리 공지해주세요.</b> 각자 이번 주에 AI를 <b>간단히 한 번</b>씩 써보고, 그 경험 하나만 가볍게 들고 오면 됩니다. (거창하지 않아도, 잘 안 된 것도 환영)</div>
+  </div>
+
+  <section>
+    <h2><span class="n">?</span> 왜 주간회의인가</h2>
+    <div class="why"><ul>
+      <li><b>새 회의를 만들지 마세요.</b> 주간회의 끝에 15~20분만 — 부담 0, 지속 가능.</li>
+      <li>AI는 <b>혼자 쓰면 잊히고, 같이 나누면 번집니다.</b> 한 명의 작은 성공이 팀의 표준이 돼요.</li>
+      <li>리더가 완벽히 시연할 필요 없어요. <b>"나도 이거 막혔어"</b>가 더 좋은 공유(심리적 안전).</li>
+      <li>4주 동안 루틴을 만들면 <b>멘토링이 끝나도 팀에 남습니다.</b></li>
+    </ul></div>
+  </section>
+
+  <section>
+    <h2><span class="n">1</span> 루틴 카드 · 매주 15~20분</h2>
+    <div class="routine">
+      <div class="rcard"><span class="num">① 이번 주 한 끗</span><span class="min">5분</span>
+        <h3>해본 거 1개 공유</h3><p>팀원·리더 1명이 "이번 주 AI로 해본 것 하나"를 보여줘요.</p>
+        <div class="tip-inline">성공도, 실패도 환영</div></div>
+      <div class="rcard"><span class="num">② 같이 뜯어보기</span><span class="min">7분</span>
+        <h3>문제→프롬프트→결과</h3><p>어떤 일이었고, 어떻게 시켰고, 뭐가 좋았나/막혔나. 팀이 질문·아이디어.</p></div>
+      <div class="rcard"><span class="num">③ 다음 주 한 개</span><span class="min">3분</span>
+        <h3>다음 시도 1개 정하기</h3><p>각자(또는 팀) 다음 주에 해볼 AI 활용 1개를 적어요.</p>
+        <div class="tip-inline">다음 주 ①의 재료</div></div>
+    </div>
+    <p class="keynote">핵심은 <b>"한 개"</b> — 많이 하려 말고, 매주 <b>딱 하나</b>를 깊게.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span> 이런 걸 공유해요 — 주제별 예시</h2>
+    <p style="font-size:13px;color:var(--sub);margin:-4px 0 12px"><b>2주차부터</b> 데이터·대시보드·자동화·에이전트봇 세션이 시작돼요. 거기서 <b>직접 실습하고 만들어본 것</b>을 주간회의에서 팀과 나눠보세요. 아래에서 <b>주제를 골라</b> 예시를 확인하세요 👇</p>
+    <div class="tabs" id="extabs">
+      <span class="tab on" data-g="data">📊 데이터</span>
+      <span class="tab" data-g="auto">⚙️ 자동화</span>
+      <span class="tab" data-g="agent">🤖 에이전트봇</span>
+      <span class="tab" data-g="cc">🟢 클로드코드</span>
+    </div>
+
+    <div class="exgroup on" data-g="data">
+      <div class="exlist">
+        <div class="ex"><span class="tag">📥 데이터 가져오기(API)</span><span>"사내/공공 API를 클로드코드로 연결해, 매번 손으로 받던 지표를 자동으로 가져왔어요."</span></div>
+        <div class="ex"><span class="tag">🔎 분석</span><span>"지난 분기 매출 CSV를 주고 '놓친 패턴·이상한 점 5개 찾아줘' → 몰랐던 추세 발견."</span></div>
+        <div class="ex"><span class="tag">📊 시각화</span><span>"숫자 표를 '한눈에 보이는 차트로' 시켰더니 보고가 훨씬 쉬워졌어요."</span></div>
+        <div class="ex"><span class="tag">📈 대시보드</span><span>"팀 KPI를 한 페이지 대시보드로 만들어, 매주 자동 업데이트되게 연결."</span></div>
+        <div class="ex"><span class="tag">🔗 팀에 공유</span><span>"그 대시보드 링크를 팀 전체에 공유 → 모두가 같은 숫자를 보고 회의해요."</span></div>
+      </div>
+      <p class="keynote">데이터를 <b>가져오기 → 분석 → 시각화 → 대시보드 → 팀 공유</b>까지. 한 단계만 해봐도 좋은 공유예요.</p>
+    </div>
+
+    <div class="exgroup" data-g="auto">
+      <div class="exlist">
+        <div class="ex"><span class="tag">🧹 데이터 정리</span><span>"지저분한 엑셀을 '한 행 = 한 건'으로 자동 정리하는 스크립트를 만들었어요."</span></div>
+        <div class="ex"><span class="tag">🔁 반복 작업</span><span>"카페24 매출 엑셀 → 구글시트에 자동 입력(버튼 한 번)으로 바꿨어요."</span></div>
+        <div class="ex"><span class="tag">📨 알림·취합</span><span>"협력업체 진행이 3일 멈추면 담당자에게 슬랙으로 자동 리마인드."</span></div>
+        <div class="ex"><span class="tag">📄 문서 생성</span><span>"회의록을 넣으면 '액션 아이템 표'로 자동 정리해줘요."</span></div>
+        <div class="ex"><span class="tag">⏱️ 결과</span><span>"매주 2시간 걸리던 일이 10분으로 — 남은 시간은 기획에 썼어요."</span></div>
+      </div>
+      <p class="keynote">핵심은 <b>"매번 손으로 하던 그 일"</b> 하나를 자동으로. 작게 시작하세요.</p>
+    </div>
+
+    <div class="exgroup" data-g="agent">
+      <div class="exlist">
+        <div class="ex"><span class="tag">🤖 만든 봇</span><span>"타겟을 넣으면 트렌드·레퍼런스를 모아 노션에 정리해주는 봇을 만들었어요."</span></div>
+        <div class="ex"><span class="tag">🔌 도구 연결(MCP)</span><span>"노션·슬랙을 AI에 연결(MCP)하니, 말로 시키면 실제 페이지를 만들어줘요."</span></div>
+        <div class="ex"><span class="tag">🧩 역할 나누기</span><span>"큰 일을 작은 역할로 쪼개 여러 AI(서브에이전트)가 나눠 처리하게 했어요."</span></div>
+        <div class="ex"><span class="tag">💡 알게된 점</span><span>"봇은 '한 번에 완벽'보다, 작게 만들고 피드백을 쌓을수록 똑똑해져요."</span></div>
+        <div class="ex"><span class="tag">🔗 팀에 공유</span><span>"내가 만든 봇 사용법을 팀에 공유 → 다른 팀원도 바로 활용해요."</span></div>
+      </div>
+      <p class="keynote">"사람이 매번 챙기던 일"을 봇에게. <b>작게 만들고 키우기</b>가 정답.</p>
+    </div>
+
+    <div class="exgroup" data-g="cc">
+      <div class="exlist">
+        <div class="ex"><span class="tag">📁 CLAUDE.md</span><span>"프로젝트에 CLAUDE.md로 '내 맥락'을 적어두니, 매번 설명 안 해도 알아들어요."</span></div>
+        <div class="ex"><span class="tag">🗂️ 폴더 구조</span><span>"작업을 폴더로 나눠 정리하니 AI가 헷갈리지 않고 정확히 작업해요."</span></div>
+        <div class="ex"><span class="tag">🔁 피드백 누적</span><span>"결과가 별로여도 '왜 별론지' 피드백을 주면, 쓸수록 결과가 좋아져요."</span></div>
+        <div class="ex"><span class="tag">🧰 스킬·MCP</span><span>"자주 쓰는 작업을 '스킬'로 저장해두면 다음부터 한 단어로 끝나요."</span></div>
+        <div class="ex"><span class="tag">⚠️ 노하우</span><span>"한 번에 큰 걸 시키지 말고, 작은 단계로 쪼개 시키면 실패가 확 줄어요."</span></div>
+      </div>
+      <p class="keynote">클로드코드는 <b>'기억(CLAUDE.md)' + '작게 쪼개기'</b>가 핵심 노하우.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span> 스터디 일정 (6월 5주차 시작)</h2>
+    <p style="font-size:13px;color:var(--sub);margin:-4px 0 12px">매주 1회 · 4주간 · 주간회의에 얹어서 진행</p>
+    <div class="weeks">
+      <div class="wk"><div class="t">1주차</div><h4>가볍게 시작</h4><p>각자 간단히 해본 것 하나씩 — 기대치 낮추기("나도 초보")</p></div>
+      <div class="wk"><div class="t">2주차</div><h4>팀원 사례</h4><p>질문으로 깊게 파주기</p></div>
+      <div class="wk"><div class="t">3주차</div><h4>직무별 적용</h4><p>"내 일에 어떻게?"로</p></div>
+      <div class="wk"><div class="t">4주차</div><h4>베스트 + 약속</h4><p>루틴을 '계속'으로 굳히기</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">4</span> 운영 팁</h2>
+    <div class="tips">
+      <div class="tip"><b>돌아가며</b> — 매주 발표자 1명을 미리 지정(다음 주 예고)해 부담을 나눠요.</div>
+      <div class="tip"><b>미리 준비</b> — 회의 전에 각자 공유할 것 하나를 미리 정해 <b>인사이트 보드에 남겨</b> 오면, 회의가 짧고 알차져요.</div>
+      <div class="tip"><b>작게</b> — "엑셀 정리 한 번", "메일 초안 한 번"도 충분한 사례. 거창할 필요 없음.</div>
+      <div class="tip"><b>실패 환영</b> — "안 됐어요"가 최고의 학습 재료. 리더가 먼저 실패담을 꺼내면 분위기가 열려요.</div>
+      <div class="tip"><b>연결</b> — 사례를 포털 '인사이트'에 기록 → 포인트·랭킹·다른 팀 공유.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">📄</span> 팀원 PRD 열람</h2>
+    <a class="mat" href="#" onclick="return false">📄 <span><b>우리 팀 PRD 모아보기</b><br><span class="d">각 팀원이 정의한 문제(PRD)를 한곳에서 열람하고, 회의에서 같이 봐요</span></span></a>
+  </section>
+
+  <div class="bottomnote">
+    🧠 <b>팀에서 사용할 'AI 인사이트 보드'</b>가 준비돼 있어요 — 각자 인사이트를 남기면 주간회의에서 같이 봐요. &nbsp;<a href="#" onclick="return false">인사이트 보드 열기 →</a>
+  </div>
+
+  <p class="foot">AX 멘토링 1기 · 팀 스터디 가이드 (프로토타입) · 라이트테마<br>※ 배포 시 PRD·인사이트 보드 링크는 실제 URL로 교체.</p>
+</div>
+<script>
+  // 주제 탭 전환 (데이터 기본)
+  const tabs=[...document.querySelectorAll('#extabs .tab')];
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.classList.remove('on')); t.classList.add('on');
+    document.querySelectorAll('.exgroup').forEach(el=>el.classList.toggle('on', el.dataset.g===t.dataset.g));
+  }));
+</script>
+</body>
+</html>
