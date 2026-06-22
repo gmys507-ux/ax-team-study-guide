@@ -248,10 +248,14 @@
       <span style="font-size:13.5px;font-weight:700">팀 선택 →</span>
       <select id="teamPick">
         <option value="">팀을 선택하세요</option>
-        <option>마케팅팀</option>
-        <option>데이터팀</option>
-        <option>영업팀</option>
-        <option>디자인팀</option>
+        <option>대만/홍콩사업팀</option><option>동남아사업팀</option><option>일본사업팀</option>
+        <option>HR팀</option><option>C-Staff팀</option><option>온라인채널팀</option><option>오프라인채널팀</option>
+        <option>마케팅1팀</option><option>마케팅2팀</option><option>마케팅3팀</option><option>마케팅4팀</option>
+        <option>마케팅5팀</option><option>마케팅6팀</option><option>마케팅지원팀</option>
+        <option>CX팀</option><option>상품기획팀</option><option>촬영팀</option><option>크리에이티브디자인팀</option>
+        <option>총무팀</option><option>틱톡TF</option><option>S&amp;OP팀</option><option>구매팀</option>
+        <option>물류팀</option><option>품질관리팀</option><option>북미사업1팀</option><option>북미사업2팀</option>
+        <option>해외영업팀</option><option>해외사업지원팀</option><option>기타/신규팀</option>
       </select>
     </div>
     <div id="prdList"><div class="prdempty">팀을 선택하면, 그 팀이 풀려는 문제가 보여요.</div></div>
@@ -266,18 +270,17 @@
 <script>
   // 팀 선택 → 풀려는 문제 보기 (※ 프로토타입 mock — 실제는 포털 project_prds를 팀별로 불러옴)
   const TEAM_PRDS = {
-    '마케팅팀': [
+    '마케팅1팀': [
       {who:'김지훈', problem:'매주 광고 리포트 2시간 → 자동 표 1장으로 줄이고 싶어요', detail:'5개 채널 데이터를 매번 손으로 취합 중. 월요일 9시에 자동으로 합쳐진 표가 있으면.'},
       {who:'이수민', problem:'경쟁사 신제품·프로모션을 매번 검색 → 주간 요약을 받고 싶어요', detail:'뉴스·SNS를 주 1회 모아 핵심만 정리.'},
     ],
-    '데이터팀': [
+    'S&OP팀': [
       {who:'박서준', problem:'여러 시트를 합치는 반복작업을 자동화하고 싶어요', detail:'매주 5개 파일을 수기로 병합. 실수도 잦음.'},
       {who:'최유나', problem:'대시보드 숫자를 매주 갱신 → 자동 업데이트하고 싶어요', detail:'원본이 바뀌면 자동 반영되는 한 장 대시보드.'},
     ],
-    '영업팀': [
-      {who:'정민호', problem:'미팅 노트를 요약해 CRM에 정리하고 싶어요', detail:'녹취/메모를 핵심·다음 액션으로 자동 정리.'},
+    '해외영업팀': [
+      {who:'정민호', problem:'미팅 노트를 요약해 정리하고 싶어요', detail:'녹취/메모를 핵심·다음 액션으로 자동 정리.'},
     ],
-    '디자인팀': [],
   };
   // 이름 가운데 마스킹: 김지훈→김*훈, 홍길→홍*, 남궁민수→남**수
   function maskName(n){ const a=[...(n||'')]; if(a.length<=1) return n||''; if(a.length===2) return a[0]+'*'; return a[0]+'*'.repeat(a.length-2)+a[a.length-1]; }
