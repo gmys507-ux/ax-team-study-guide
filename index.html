@@ -21,6 +21,31 @@
   .bottomnote{background:#F8FAFC;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:42px;font-size:14px;color:#334155;text-align:center}
   .bottomnote b{color:var(--ink)}
   .bottomnote a{color:var(--emerald-d);font-weight:700;text-decoration:none;white-space:nowrap}
+  .flow{display:flex;align-items:stretch;gap:8px;margin-top:16px;flex-wrap:wrap}
+  .fstep{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 14px}
+  .fstep b{display:block;font-size:13.5px;color:var(--ink);margin-bottom:4px}
+  .fstep span{font-size:12px;color:var(--sub)}
+  .farr{align-self:center;color:var(--emerald);font-weight:800;font-size:18px}
+  @media(max-width:600px){.farr{display:none}}
+  /* 팀장 딱 2가지 */
+  .twojobs{background:linear-gradient(135deg,#ECFDF5,#fff);border:1px solid #BBF7D0;border-radius:16px;padding:20px;margin-top:18px}
+  .twojobs h3{font-size:17px;margin:0 0 4px}
+  .twojobs .sub2{font-size:13px;color:var(--sub);margin:0 0 14px}
+  .jobs{display:flex;gap:12px}
+  @media(max-width:600px){.jobs{flex-direction:column}}
+  .job{flex:1;display:flex;gap:11px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .job .jn{width:26px;height:26px;flex-shrink:0;border-radius:50%;background:var(--emerald);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .job b{font-size:14.5px;color:var(--ink)}
+  .job p{font-size:13px;color:var(--sub);margin:4px 0 0;line-height:1.55}
+  .job p b{color:var(--ink)}
+  /* 팀 선택 → 문제 보기 */
+  .prdpick{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+  .prdpick select{font-family:inherit;font-size:14px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);cursor:pointer;min-width:200px}
+  .prdcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:9px}
+  .prdcard .who{font-size:12px;color:var(--emerald-d);font-weight:700;margin-bottom:5px}
+  .prdcard .prob{font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:5px}
+  .prdcard .det{font-size:13px;color:var(--sub);line-height:1.55}
+  .prdempty{color:var(--sub);font-size:13.5px;padding:18px;text-align:center;background:#F8FAFC;border:1px dashed var(--line);border-radius:12px}
   .cta{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 8px}
   .cta a{text-decoration:none;font-size:13.5px;font-weight:700;border-radius:10px;padding:11px 16px}
   .cta .primary{background:var(--ink);color:#fff}
@@ -94,9 +119,21 @@
   <p style="margin:6px 0 0"><span class="oneline">각자 이번 주 AI로 간단히 해본 것 하나, 가볍게 공유하는 자리.</span></p>
   <p class="sub">새 회의를 만들 필요 없어요. 이미 있는 <b>주간회의에 15~20분</b>만 얹으면 됩니다.</p>
 
-  <div class="notice">
-    <div class="ni">📅 6월 5주차 시작 · 매주 1회</div>
-    <div class="nb"><b>시작 전, 팀에 미리 공지해주세요.</b> 각자 이번 주에 AI를 <b>간단히 한 번</b>씩 써보고, 그 경험 하나만 가볍게 들고 오면 됩니다. (거창하지 않아도, 잘 안 된 것도 환영)</div>
+  <div class="twojobs">
+    <h3>팀장님이 하실 건 딱 2가지예요</h3>
+    <p class="sub2">📅 6월 5주차 시작 · 매주 주간회의에 15~20분</p>
+    <div class="jobs">
+      <div class="job"><span class="jn">1</span><div><b>알리기</b><p>6월 5주차부터 주간회의에서 <b>AX 스터디를 함께 진행</b>한다고 팀에 미리 알리기 <br>(각자 그 주에 AI를 한 번씩 써보고 오게)</p></div></div>
+      <div class="job"><span class="jn">2</span><div><b>진행하기</b><p>6월 5주차부터 <b>매주 주간회의 때</b> 이 가이드대로 스터디 진행하기</p></div></div>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="fstep"><b>1. 포털 챌린지에 인증</b><span>각자 이번 주 인사이트를 기록 (=포인트 적립)</span></div>
+    <span class="farr">→</span>
+    <div class="fstep"><b>2. AX 스터디 탭에 자동 아카이빙</b><span>팀별·주차별로 자동 정리돼요</span></div>
+    <span class="farr">→</span>
+    <div class="fstep"><b>3. 주간회의에서 공유</b><span>우리 팀 탭을 열어 같이 보기</span></div>
   </div>
 
   <section>
@@ -113,10 +150,10 @@
     <h2><span class="n">1</span> 루틴 카드 · 매주 15~20분</h2>
     <div class="routine">
       <div class="rcard"><span class="num">① 이번 주 한 끗</span><span class="min">5분</span>
-        <h3>해본 거 1개 공유</h3><p>팀원·리더 1명이 "이번 주 AI로 해본 것 하나"를 보여줘요.</p>
+        <h3>해본 거 1개 공유</h3><p>포털 챌린지에 <b>인증해 둔 인사이트</b> 중 1명이 발표해요.</p>
         <div class="tip-inline">성공도, 실패도 환영</div></div>
       <div class="rcard"><span class="num">② 같이 뜯어보기</span><span class="min">7분</span>
-        <h3>문제→프롬프트→결과</h3><p>어떤 일이었고, 어떻게 시켰고, 뭐가 좋았나/막혔나. 팀이 질문·아이디어.</p></div>
+        <h3>문제→프롬프트→결과</h3><p><b>AX 스터디 탭</b>의 우리 팀 카드를 열어, 어떻게 시켰고 뭐가 좋았나/막혔나 같이 봐요.</p></div>
       <div class="rcard"><span class="num">③ 다음 주 한 개</span><span class="min">3분</span>
         <h3>다음 시도 1개 정하기</h3><p>각자(또는 팀) 다음 주에 해볼 AI 활용 1개를 적어요.</p>
         <div class="tip-inline">다음 주 ①의 재료</div></div>
@@ -194,25 +231,61 @@
     <h2><span class="n">4</span> 운영 팁</h2>
     <div class="tips">
       <div class="tip"><b>돌아가며</b> — 매주 발표자 1명을 미리 지정(다음 주 예고)해 부담을 나눠요.</div>
-      <div class="tip"><b>미리 준비</b> — 회의 전에 각자 공유할 것 하나를 미리 정해 <b>인사이트 보드에 남겨</b> 오면, 회의가 짧고 알차져요.</div>
+      <div class="tip"><b>미리 준비</b> — 회의 전에 각자 <b>포털 챌린지에 이번 주 인사이트를 인증</b>해 두면, AX 스터디 탭에 자동으로 쌓여서 회의가 짧고 알차져요.</div>
       <div class="tip"><b>작게</b> — "엑셀 정리 한 번", "메일 초안 한 번"도 충분한 사례. 거창할 필요 없음.</div>
       <div class="tip"><b>실패 환영</b> — "안 됐어요"가 최고의 학습 재료. 리더가 먼저 실패담을 꺼내면 분위기가 열려요.</div>
-      <div class="tip"><b>연결</b> — 사례를 포털 '인사이트'에 기록 → 포인트·랭킹·다른 팀 공유.</div>
+      <div class="tip"><b>연결</b> — 포털 챌린지에 인증하면 <b>포인트·랭킹 자동 적립 + AX 스터디 탭에 팀별 아카이빙</b>까지 한 번에.</div>
     </div>
   </section>
 
   <section>
-    <h2><span class="n">📄</span> 팀원 PRD 열람</h2>
-    <a class="mat" href="#" onclick="return false">📄 <span><b>우리 팀 PRD 모아보기</b><br><span class="d">각 팀원이 정의한 문제(PRD)를 한곳에서 열람하고, 회의에서 같이 봐요</span></span></a>
+    <h2><span class="n">📄</span> 우리 팀이 풀려는 문제 보기</h2>
+    <p style="font-size:13px;color:var(--sub);margin:-4px 0 12px">팀원들이 포털에 적어 둔 <b>"어떤 문제를 AI로 풀고 싶은지"</b>를 팀별로 볼 수 있어요. 회의에서 같이 보며 방향을 잡아주세요.</p>
+    <div class="prdpick">
+      <span style="font-size:13.5px;font-weight:700">팀 선택 →</span>
+      <select id="teamPick">
+        <option value="">팀을 선택하세요</option>
+        <option>마케팅팀</option>
+        <option>데이터팀</option>
+        <option>영업팀</option>
+        <option>디자인팀</option>
+      </select>
+    </div>
+    <div id="prdList"><div class="prdempty">팀을 선택하면, 그 팀이 풀려는 문제가 보여요.</div></div>
   </section>
 
   <div class="bottomnote">
-    🧠 <b>팀에서 사용할 'AI 인사이트 보드'</b>가 준비돼 있어요 — 각자 인사이트를 남기면 주간회의에서 같이 봐요. &nbsp;<a href="#" onclick="return false">인사이트 보드 열기 →</a>
+    🧠 포털 <b>'AX 스터디' 탭</b>에 우리 팀 인사이트가 <b>주차별로 자동으로 쌓여요</b> — 챌린지에 인증만 하면 됩니다. &nbsp;<a href="#" onclick="return false">AX 스터디 탭 열기 →</a>
   </div>
 
-  <p class="foot">AX 멘토링 1기 · 팀 스터디 가이드 (프로토타입) · 라이트테마<br>※ 배포 시 PRD·인사이트 보드 링크는 실제 URL로 교체.</p>
+  <p class="foot">AX 멘토링 1기 · 팀 스터디 가이드 · 포털 연동형<br>※ '풀려는 문제'·AX 스터디 탭 링크는 포털 실제 URL로 교체.</p>
 </div>
 <script>
+  // 팀 선택 → 풀려는 문제 보기 (※ 프로토타입 mock — 실제는 포털 project_prds를 팀별로 불러옴)
+  const TEAM_PRDS = {
+    '마케팅팀': [
+      {who:'김지훈', problem:'매주 광고 리포트 2시간 → 자동 표 1장으로 줄이고 싶어요', detail:'5개 채널 데이터를 매번 손으로 취합 중. 월요일 9시에 자동으로 합쳐진 표가 있으면.'},
+      {who:'이수민', problem:'경쟁사 신제품·프로모션을 매번 검색 → 주간 요약을 받고 싶어요', detail:'뉴스·SNS를 주 1회 모아 핵심만 정리.'},
+    ],
+    '데이터팀': [
+      {who:'박서준', problem:'여러 시트를 합치는 반복작업을 자동화하고 싶어요', detail:'매주 5개 파일을 수기로 병합. 실수도 잦음.'},
+      {who:'최유나', problem:'대시보드 숫자를 매주 갱신 → 자동 업데이트하고 싶어요', detail:'원본이 바뀌면 자동 반영되는 한 장 대시보드.'},
+    ],
+    '영업팀': [
+      {who:'정민호', problem:'미팅 노트를 요약해 CRM에 정리하고 싶어요', detail:'녹취/메모를 핵심·다음 액션으로 자동 정리.'},
+    ],
+    '디자인팀': [],
+  };
+  const _sel=document.getElementById('teamPick'), _list=document.getElementById('prdList');
+  if(_sel){ _sel.addEventListener('change',()=>{
+    const t=_sel.value;
+    if(!t){ _list.innerHTML='<div class="prdempty">팀을 선택하면, 그 팀이 풀려는 문제가 보여요.</div>'; return; }
+    const arr=TEAM_PRDS[t]||[];
+    _list.innerHTML = arr.length
+      ? arr.map(p=>`<div class="prdcard"><div class="who">🙋 ${p.who}</div><div class="prob">${p.problem}</div><div class="det">${p.detail}</div></div>`).join('')
+      : '<div class="prdempty">아직 이 팀이 적어 둔 문제가 없어요. 회의에서 같이 한 줄 적어보세요.</div>';
+  }); }
+
   // 주제 탭 전환 (데이터 기본)
   const tabs=[...document.querySelectorAll('#extabs .tab')];
   tabs.forEach(t=>t.addEventListener('click',()=>{
