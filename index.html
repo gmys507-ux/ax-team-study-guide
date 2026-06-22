@@ -241,59 +241,13 @@
     </div>
   </section>
 
-  <section>
-    <h2><span class="n">📄</span> 우리 팀이 풀려는 문제 보기</h2>
-    <p style="font-size:13px;color:var(--sub);margin:-4px 0 12px">팀원들이 포털에 적어 둔 <b>"어떤 문제를 AI로 풀고 싶은지"</b>를 팀별로 볼 수 있어요. 회의에서 같이 보며 방향을 잡아주세요.</p>
-    <div class="prdpick">
-      <span style="font-size:13.5px;font-weight:700">팀 선택 →</span>
-      <select id="teamPick">
-        <option value="">팀을 선택하세요</option>
-        <option>대만/홍콩사업팀</option><option>동남아사업팀</option><option>일본사업팀</option>
-        <option>HR팀</option><option>C-Staff팀</option><option>온라인채널팀</option><option>오프라인채널팀</option>
-        <option>마케팅1팀</option><option>마케팅2팀</option><option>마케팅3팀</option><option>마케팅4팀</option>
-        <option>마케팅5팀</option><option>마케팅6팀</option><option>마케팅지원팀</option>
-        <option>CX팀</option><option>상품기획팀</option><option>촬영팀</option><option>크리에이티브디자인팀</option>
-        <option>총무팀</option><option>틱톡TF</option><option>S&amp;OP팀</option><option>구매팀</option>
-        <option>물류팀</option><option>품질관리팀</option><option>북미사업1팀</option><option>북미사업2팀</option>
-        <option>해외영업팀</option><option>해외사업지원팀</option><option>기타/신규팀</option>
-      </select>
-    </div>
-    <div id="prdList"><div class="prdempty">팀을 선택하면, 그 팀이 풀려는 문제가 보여요.</div></div>
-  </section>
-
   <div class="bottomnote">
-    🧠 포털 <b>'AX 스터디' 탭</b>에 우리 팀 인사이트가 <b>주차별로 자동으로 쌓여요</b> — 챌린지에 인증만 하면 됩니다. &nbsp;<a href="#" onclick="return false">AX 스터디 탭 열기 →</a>
+    🧠 우리 팀이 풀려는 문제·인사이트는 <b>포털 'AX 스터디'</b>에서 팀별로 모아 볼 수 있게 준비 중이에요. 평소 <b>챌린지에 인증</b>만 해두시면 됩니다. <span style="color:#94a3b8">(포털 준비 중)</span>
   </div>
 
   <p class="foot">AX 멘토링 1기 · 팀 스터디 가이드 · 포털 연동형<br>※ '풀려는 문제'·AX 스터디 탭 링크는 포털 실제 URL로 교체.</p>
 </div>
 <script>
-  // 팀 선택 → 풀려는 문제 보기 (※ 프로토타입 mock — 실제는 포털 project_prds를 팀별로 불러옴)
-  const TEAM_PRDS = {
-    '마케팅1팀': [
-      {who:'김지훈', problem:'매주 광고 리포트 2시간 → 자동 표 1장으로 줄이고 싶어요', detail:'5개 채널 데이터를 매번 손으로 취합 중. 월요일 9시에 자동으로 합쳐진 표가 있으면.'},
-      {who:'이수민', problem:'경쟁사 신제품·프로모션을 매번 검색 → 주간 요약을 받고 싶어요', detail:'뉴스·SNS를 주 1회 모아 핵심만 정리.'},
-    ],
-    'S&OP팀': [
-      {who:'박서준', problem:'여러 시트를 합치는 반복작업을 자동화하고 싶어요', detail:'매주 5개 파일을 수기로 병합. 실수도 잦음.'},
-      {who:'최유나', problem:'대시보드 숫자를 매주 갱신 → 자동 업데이트하고 싶어요', detail:'원본이 바뀌면 자동 반영되는 한 장 대시보드.'},
-    ],
-    '해외영업팀': [
-      {who:'정민호', problem:'미팅 노트를 요약해 정리하고 싶어요', detail:'녹취/메모를 핵심·다음 액션으로 자동 정리.'},
-    ],
-  };
-  // 이름 가운데 마스킹: 김지훈→김*훈, 홍길→홍*, 남궁민수→남**수
-  function maskName(n){ const a=[...(n||'')]; if(a.length<=1) return n||''; if(a.length===2) return a[0]+'*'; return a[0]+'*'.repeat(a.length-2)+a[a.length-1]; }
-  const _sel=document.getElementById('teamPick'), _list=document.getElementById('prdList');
-  if(_sel){ _sel.addEventListener('change',()=>{
-    const t=_sel.value;
-    if(!t){ _list.innerHTML='<div class="prdempty">팀을 선택하면, 그 팀이 풀려는 문제가 보여요.</div>'; return; }
-    const arr=TEAM_PRDS[t]||[];
-    _list.innerHTML = arr.length
-      ? arr.map(p=>`<div class="prdcard"><div class="who">🙋 ${maskName(p.who)}</div><div class="prob">${p.problem}</div><div class="det">${p.detail}</div></div>`).join('')
-      : '<div class="prdempty">아직 이 팀이 적어 둔 문제가 없어요. 회의에서 같이 한 줄 적어보세요.</div>';
-  }); }
-
   // 주제 탭 전환 (데이터 기본)
   const tabs=[...document.querySelectorAll('#extabs .tab')];
   tabs.forEach(t=>t.addEventListener('click',()=>{
