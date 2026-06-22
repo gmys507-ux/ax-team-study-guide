@@ -279,13 +279,15 @@
     ],
     '디자인팀': [],
   };
+  // 이름 가운데 마스킹: 김지훈→김*훈, 홍길→홍*, 남궁민수→남**수
+  function maskName(n){ const a=[...(n||'')]; if(a.length<=1) return n||''; if(a.length===2) return a[0]+'*'; return a[0]+'*'.repeat(a.length-2)+a[a.length-1]; }
   const _sel=document.getElementById('teamPick'), _list=document.getElementById('prdList');
   if(_sel){ _sel.addEventListener('change',()=>{
     const t=_sel.value;
     if(!t){ _list.innerHTML='<div class="prdempty">팀을 선택하면, 그 팀이 풀려는 문제가 보여요.</div>'; return; }
     const arr=TEAM_PRDS[t]||[];
     _list.innerHTML = arr.length
-      ? arr.map(p=>`<div class="prdcard"><div class="who">🙋 ${p.who}</div><div class="prob">${p.problem}</div><div class="det">${p.detail}</div></div>`).join('')
+      ? arr.map(p=>`<div class="prdcard"><div class="who">🙋 ${maskName(p.who)}</div><div class="prob">${p.problem}</div><div class="det">${p.detail}</div></div>`).join('')
       : '<div class="prdempty">아직 이 팀이 적어 둔 문제가 없어요. 회의에서 같이 한 줄 적어보세요.</div>';
   }); }
 
